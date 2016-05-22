@@ -5,8 +5,9 @@
 import tkinter
 import turtle
 import math
+
 def repère(t):
-	t.width(3)	
+	t.width(3)
 	t.setposition(-300,0)
 	t.fd(600)
 	t.right(90)
@@ -52,14 +53,20 @@ def repère(t):
 def fonction(t, f,c):
 	t.color(c)
 	ff = []
-	if 'x**2' in f:
-		f = f.replace('x**2','pow(x,2)/30')
-	if 'x+' in f:
-		f = f.replace('x+','(x/30)+')
-	if 'x-' in f:
-		f = f.replace('x-','(x/30)-')
-	if 'x*' in f:
-		f = f.replace('x*','(x/30)*')
+	if f != 'x':
+		if 'x' in f and 'x**2' not in f:
+			f = f.replace('x','(x/30)')
+		if 'x**2' in f:
+			f = f.replace('x**2','pow(x,2)/30')
+		if 'x+' in f:
+			f = f.replace('x+','(x/30)+')
+		if 'x-' in f:
+			f = f.replace('x-','(x/30)-')
+		if 'x*' in f:
+			f = f.replace('x*','(x/30)*')
+	
+		
+	
 
 	for i in range(len(f)):
 		if i < len(f)-1:
