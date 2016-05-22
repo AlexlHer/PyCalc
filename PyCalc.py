@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Auteur : Alexandre l'Heritier
 print("----------------------------------------------------------------------")
-print("Projet calcul v0.4")
+print("PyCalc v1.0")
 print("----------------------------------------------------------------------")
 print("")
 
@@ -9,6 +9,7 @@ from tkinter import *
 import math
 
 calcul = 0
+calcul1 = 0
 touche_1 = 0
 touche_2 = 0
 
@@ -166,8 +167,81 @@ def touche_tan():
 	a += "math.tan("
 	calcul.set(a)
 	
+def touche_pui():
+	global calcul
+	a = calcul.get()
+	a += "**"
+	calcul.set(a)
+	
+def secdeg():
+	global calcul
+	f = calcul.get()
+	fm = f.replace('**2', "")
+	fm = fm.split("x")
+	a = int(fm[0])
+	b = int(fm[1])
+	c = int(fm[2])
+	delta = (b*b) - (4*a*c)
+	if delta < 0:
+		p = "Pas de solutions"
+	elif delta == 0:
+		resu = (-b)/(2*a)
+		p = "Une solution : x = {}/2{} = {}".format(-b, a, resu)
+	else:
+		resu1 = (-b-math.sqrt(delta))/(2*a)
+		resu2 = (-b+math.sqrt(delta))/(2*a)
+		resu1 = float("{0:2.2f}".format(resu1))
+		resu2 = float("{0:2.2f}".format(resu2))
+		p = "Deux solutions : x1 = ({}-√{})/2{} = {} et x2 = ({}+√{})/2{} = {}".format(-b, delta, a, resu1, -b, delta, a, resu2)
+
+	a = "a = {}".format(a)
+	b = "b = {}".format(b)
+	c = "c = {}".format(c)
+	delta = "Δ = {}".format(delta)
+	fenetre3 = Tk()
+	fenetre3.title("Second degré")
+	
+	titre = Label(fenetre3, text=f, height=1, relief=SUNKEN)
+	scd_1 = Label(fenetre3, text=a, height=1)
+	scd_2 = Label(fenetre3, text=b, height=1)
+	scd_3 = Label(fenetre3, text=c, height=1)
+	scd_4 = Label(fenetre3, text=delta, height=1)
+	scd_5 = Label(fenetre3, text=p, height=1)
+	
+	titre.config(font=('Arial', 16, 'bold'))
+	scd_1.config(font=('Arial', 14, 'bold'))
+	scd_2.config(font=('Arial', 14, 'bold'))
+	scd_3.config(font=('Arial', 14, 'bold'))
+	scd_4.config(font=('Arial', 14, 'bold'))
+	scd_5.config(font=('Arial', 14, 'bold'))
+		
+	titre.pack()
+	scd_1.pack()
+	scd_2.pack()
+	scd_3.pack()
+	scd_4.pack()
+	scd_5.pack()
+	
+def touche_oth():
+	global calcul
+	a = calcul.get()		
+	fenetre2 = Tk()
+	fenetre2.title("Autres options")
+	
+	titre = Label(fenetre2, text="A résoudre", height=1)
+	titre1 = Label(fenetre2, text=a, height=1, relief=SUNKEN)
+	other_1 = Button(fenetre2, text = "Calcul de l'équation du second degré (ax²+bx+c)", command = secdeg)
+	
+	titre.config(font=('Arial', 14))
+	titre1.config(font=('Arial', 16, 'bold'))
+	other_1.config(font=('Arial', 12, 'bold'))
+	
+	titre.pack()
+	titre1.pack()
+	other_1.pack()
+	
 fenetre1 = Tk()
-fenetre1.title("Calculatrice v0.4")
+fenetre1.title("PyCalc v1.0")
 
 calcul = StringVar()
 v = IntVar()
@@ -199,6 +273,8 @@ touche_pi = Button(fenetre1, text = "π", width=3, command = touche_pi)
 touche_sin = Button(fenetre1, text = "sin", width=3, command = touche_sin)
 touche_cos = Button(fenetre1, text = "cos", width=3, command = touche_cos)
 touche_tan = Button(fenetre1, text = "tan", width=3, command = touche_tan)
+touche_pui = Button(fenetre1, text = "^", width=3, command = touche_pui)
+touche_oth = Button(fenetre1, text = "Plus", width=3, command = touche_oth)
 
 entree.config(font=('Arial', 20, 'bold'))
 touche_1.config(font=('Arial', 16, 'bold'))
@@ -227,6 +303,8 @@ touche_pi.config(font=('Arial', 16, 'bold'))
 touche_sin.config(font=('Arial', 16, 'bold'))
 touche_cos.config(font=('Arial', 16, 'bold'))
 touche_tan.config(font=('Arial', 16, 'bold'))
+touche_pui.config(font=('Arial', 16, 'bold'))
+touche_oth.config(font=('Arial', 16, 'bold'))
 
 entree.grid(row=1, column=2, columnspan=5)
 touche_1.grid(row=4, column=3)
@@ -245,7 +323,7 @@ touche_div.grid(row=3, column=6)
 touche_mul.grid(row=2, column=6)
 touche_sou.grid(row=3, column=2)
 touche_plu.grid(row=2, column=2)
-touche_res.grid(row=4, column=6, rowspan=2)
+touche_res.grid(row=5, column=6)
 touche_vir.grid(row=4, column=2)
 touche_pa1.grid(row=5, column=3)
 touche_pa2.grid(row=5, column=5)
@@ -256,6 +334,8 @@ touche_pi.grid(row=2, column=7)
 touche_sin.grid(row=3, column=7)
 touche_cos.grid(row=4, column=7)
 touche_tan.grid(row=5, column=7)
+touche_pui.grid(row=4, column=6)
+touche_oth.grid(row=5, column=1)
 
 fenetre1.bind("<Return>", touche_res1)
 
@@ -263,13 +343,20 @@ fenetre1.mainloop()
 
 """
 Changelog :
+v1.0 :
+Version final.
+Ajout d'un calcul auto d'équation du second degré.
+
 v0.4 :
 Ajout de fonctions "scientifique".
 Ajout d'un deuxième fichier contenant les fonctions nécessaire.
+
 v0.3 :
 Interface rendu plus lisible.
+
 v0.2 :
 Fonction de base assurées.
+
 v0.1 :
 Création de l'interface.
 """
