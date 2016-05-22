@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 # Auteurs : Ricardo Ramos et Alexandre l'Heritier
 print("----------------------------------------------------------------------")
-print("PyCalc v3.1")
+print("PyCalc v3.2")
 print("----------------------------------------------------------------------")
 print("")
 
 from tkinter import *
-from Add_PyCalc_31 import *
+from Add_PyCalc_32 import *
 import math
 
 calcul = 0
@@ -338,7 +338,7 @@ def touche_oth():
 	other_2.pack()
 	
 fenetre1 = Tk()
-fenetre1.title("PyCalc v3.1")
+fenetre1.title("PyCalc v3.2")
 
 calcul = StringVar()
 v = IntVar()
@@ -440,6 +440,9 @@ fenetre1.mainloop()
 
 """
 Changelog :
+v3.2 :
+Mise à jour module f(x).
+
 v3.1 :
 Mise à jour module f(x).
 
