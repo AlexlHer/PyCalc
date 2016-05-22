@@ -115,28 +115,23 @@ def fonction(t, f,c):
 		#print(f,x, y)
 	   
 def dessine(liste):
-	if liste != []:
-		
-		t = turtle.Turtle()
-		t.hideturtle()
-		t.speed(0)
-		turtle.setup(width=650,height=650)
-		repère(t)
-		nb_tour = len(liste)
-		for n in range(nb_tour):
-			e = liste[n]
-			f = e[0]
-			c = e[1]
-			fonction(t,f,c)
-		turtle.mainloop()
+	t = turtle.Turtle()
+	t.hideturtle()
+	t.speed(0)
+	turtle.setup(width=650,height=650)
+	repère(t)
+	nb_tour = len(liste)
+	for n in range(nb_tour):
+		e = liste[n]
+		f = e[0]
+		c = e[1]
+		fonction(t,f,c)
+	turtle.mainloop()
 
-def graf(b):
+def graf():
 	fenetre5 = tkinter.Tk()
 	y_1_v = tkinter.StringVar()
 	y_1_vo = tkinter.IntVar()
-	if b != "":
-		y_1_v.set(b)
-		y_1_vo.set(1)
 	y_1_c1 = tkinter.IntVar()
 	y_1_c2 = tkinter.IntVar()
 	y_1_c3 = tkinter.IntVar()
@@ -215,11 +210,8 @@ def graf(b):
 	y_8_c6 = tkinter.IntVar()
 	y_8_c7 = tkinter.IntVar()
 	y_8_c8 = tkinter.IntVar()
-	
-	
 	fenetre5.title("f(x)")
 	titre = tkinter.Label(fenetre5, text="Graphique de fonction")
-	
 	y_1 = tkinter.Label(fenetre5, text="y1 :")
 	y_1_1 = tkinter.Entry(fenetre5, textvariable=y_1_v)
 	y_1_2 = tkinter.Checkbutton(fenetre5, variable=y_1_vo)
@@ -234,7 +226,6 @@ def graf(b):
 	y_1_3.menu.add_checkbutton (label="Rose", variable=y_1_c6)
 	y_1_3.menu.add_checkbutton (label="Orange", variable=y_1_c7)
 	y_1_3.menu.add_checkbutton (label="Noir", variable=y_1_c8)
-	
 	y_2 = tkinter.Label(fenetre5, text="y2 :")
 	y_2_1 = tkinter.Entry(fenetre5, textvariable=y_2_v)
 	y_2_2 = tkinter.Checkbutton(fenetre5, variable=y_2_vo)
@@ -249,7 +240,6 @@ def graf(b):
 	y_2_3.menu.add_checkbutton (label="Rose", variable=y_2_c6)
 	y_2_3.menu.add_checkbutton (label="Orange", variable=y_2_c7)
 	y_2_3.menu.add_checkbutton (label="Noir", variable=y_2_c8)
-	
 	y_3 = tkinter.Label(fenetre5, text="y3 :")
 	y_3_1 = tkinter.Entry(fenetre5, textvariable=y_3_v)
 	y_3_2 = tkinter.Checkbutton(fenetre5, variable=y_3_vo)
@@ -264,7 +254,6 @@ def graf(b):
 	y_3_3.menu.add_checkbutton (label="Rose", variable=y_3_c6)
 	y_3_3.menu.add_checkbutton (label="Orange", variable=y_3_c7)
 	y_3_3.menu.add_checkbutton (label="Noir", variable=y_3_c8)
-	
 	y_4 = tkinter.Label(fenetre5, text="y4 :")
 	y_4_1 = tkinter.Entry(fenetre5, textvariable=y_4_v)
 	y_4_2 = tkinter.Checkbutton(fenetre5, variable=y_4_vo)
@@ -279,7 +268,6 @@ def graf(b):
 	y_4_3.menu.add_checkbutton (label="Rose", variable=y_4_c6)
 	y_4_3.menu.add_checkbutton (label="Orange", variable=y_4_c7)
 	y_4_3.menu.add_checkbutton (label="Noir", variable=y_4_c8)
-	
 	y_5 = tkinter.Label(fenetre5, text="y5 :")
 	y_5_1 = tkinter.Entry(fenetre5, textvariable=y_5_v)
 	y_5_2 = tkinter.Checkbutton(fenetre5, variable=y_5_vo)
@@ -294,7 +282,6 @@ def graf(b):
 	y_5_3.menu.add_checkbutton (label="Rose", variable=y_5_c6)
 	y_5_3.menu.add_checkbutton (label="Orange", variable=y_5_c7)
 	y_5_3.menu.add_checkbutton (label="Noir", variable=y_5_c8)
-	
 	y_6 = tkinter.Label(fenetre5, text="y6 :")
 	y_6_1 = tkinter.Entry(fenetre5, textvariable=y_6_v)
 	y_6_2 = tkinter.Checkbutton(fenetre5, variable=y_6_vo)
@@ -309,7 +296,6 @@ def graf(b):
 	y_6_3.menu.add_checkbutton (label="Rose", variable=y_6_c6)
 	y_6_3.menu.add_checkbutton (label="Orange", variable=y_6_c7)
 	y_6_3.menu.add_checkbutton (label="Noir", variable=y_6_c8)
-	
 	y_7 = tkinter.Label(fenetre5, text="y7 :")
 	y_7_1 = tkinter.Entry(fenetre5, textvariable=y_7_v)
 	y_7_2 = tkinter.Checkbutton(fenetre5, variable=y_7_vo)	
@@ -324,7 +310,6 @@ def graf(b):
 	y_7_3.menu.add_checkbutton (label="Rose", variable=y_7_c6)
 	y_7_3.menu.add_checkbutton (label="Orange", variable=y_7_c7)
 	y_7_3.menu.add_checkbutton (label="Noir", variable=y_7_c8)
-	
 	y_8 = tkinter.Label(fenetre5, text="y8 :")	
 	y_8_1 = tkinter.Entry(fenetre5, textvariable=y_8_v)
 	y_8_2 = tkinter.Checkbutton(fenetre5, variable=y_8_vo)
@@ -339,7 +324,6 @@ def graf(b):
 	y_8_3.menu.add_checkbutton (label="Rose", variable=y_8_c6)
 	y_8_3.menu.add_checkbutton (label="Orange", variable=y_8_c7)
 	y_8_3.menu.add_checkbutton (label="Noir", variable=y_8_c8)
-	
 	bouton = tkinter.Button(fenetre5, text="Afficher", command=fenetre5.destroy)
 	
 	titre.config(font=('Arial', 14))
@@ -669,7 +653,7 @@ def graf(b):
 	return a
 	
 	
-def mainfx(b):
-	a = graf(b)
+def maina():
+	a = graf()
 	#print(a)
 	dessine(a)
