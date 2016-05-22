@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-# Auteur : Alexandre l'Heritier
+# Auteurs : Ricardo Ramos et Alexandre l'Heritier
 print("----------------------------------------------------------------------")
-print("PyCalc v2.0")
+print("PyCalc v3.0")
 print("----------------------------------------------------------------------")
 print("")
 
 from tkinter import *
+from Add_PyCalc_30 import *
 import math
 
 calcul = 0
 touche_1 = 0
 touche_2 = 0
+y_1_v = 0
 
 def erreur(a):
 	fenetreer = Tk()
@@ -185,12 +187,10 @@ def touche_pui():
 	a = calcul.get()
 	a += "**"
 	calcul.set(a)
-	
+		
 def touche_graph():
-	global calcul
-	a = calcul.get()
-	e = "Option pas encore disponible !"
-	erreur(e)
+	fenetre1.destroy()
+	maina()
 	
 def secdeg():
 	try:
@@ -338,7 +338,7 @@ def touche_oth():
 	other_2.pack()
 	
 fenetre1 = Tk()
-fenetre1.title("PyCalc v2.0")
+fenetre1.title("PyCalc v3.0")
 
 calcul = StringVar()
 v = IntVar()
@@ -440,6 +440,9 @@ fenetre1.mainloop()
 
 """
 Changelog :
+v3.0 :
+Integration des courbes de fonctions (par Ricardo).
+
 v2.0 :
 Ajout du calcul de la forme canonique.
 
