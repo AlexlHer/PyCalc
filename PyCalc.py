@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Auteur : Alexandre l'Heritier
 print("----------------------------------------------------------------------")
-print("PyCalc v1.1")
+print("PyCalc v1.2")
 print("----------------------------------------------------------------------")
 print("")
 
@@ -112,9 +112,13 @@ def touche_plu():
 	
 def touche_res():
 	global calcul
-	a = str(calcul.get())
-	a = eval(a)
-	calcul.set(a)
+	try:
+		a = str(calcul.get())
+		a = eval(a)
+		calcul.set(a)
+	except SyntaxError:
+		e = "Calcul impossible à effectuer !"
+		erreur(e)
 	
 def touche_res1(Return):
 	global calcul
@@ -263,7 +267,7 @@ def touche_oth():
 	other_1.pack()
 	
 fenetre1 = Tk()
-fenetre1.title("PyCalc v1.1")
+fenetre1.title("PyCalc v1.2")
 
 calcul = StringVar()
 v = IntVar()
@@ -365,6 +369,9 @@ fenetre1.mainloop()
 
 """
 Changelog :
+v1.2 :
+Ajout de messages d'erreurs.
+
 v1.1 :
 Mise en place d'une fonction d'erreur.
 
