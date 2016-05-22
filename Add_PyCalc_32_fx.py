@@ -1,10 +1,18 @@
 # -*- coding: utf-8 -*-
-# Auteurs : Ricardo Ramos et Alexandre l'Heritier
+
+# Auteurs : Ricardo Ramos (traitement et affichage de la courbe) et
+#           Alexandre l'Heritier (fenètre de configuration).
+
 # 2eme fichier pour le fonctionnement de PyCalc.
 
-import tkinter
+# Importation des modules nécessaires.
+from tkinter import *
 import turtle
 import math
+
+def erreur():
+	# A faire !
+	pass
 
 def repère(t):
 	t.width(3)
@@ -33,8 +41,8 @@ def repère(t):
 	t.fd(5)
 	t.color('grey')
 	t.width(1)
-	
-	
+
+
 	for i in range(1, 20):
 		if i == 10:
 			continue
@@ -43,8 +51,8 @@ def repère(t):
 		t.pendown()
 		t.setheading(0)
 		t.fd(600)
-		
-		
+
+
 	for i in range(1, 20):
 		if i ==10:
 			continue
@@ -53,21 +61,21 @@ def repère(t):
 		t.pendown()
 		t.setheading(90)
 		t.fd(600)
-		
-		
+
+
 	t.penup()
 	t.setposition(0,0)
 	t.pendown()
 	t.color('black')
-		
+
 def fonction(t, f,c):
 	t.color(c)
 	ff = []
-	
-	
+
+
 	for i in range(len(f)):
 		if i < len(f)-1:
-			
+
 			if ord(f[i]) in range(48,58) and f[i-1] != ',' and ord(f[i+1]) not in\
 			range(48,58) :
 				elt = f[i]+'*30'
@@ -79,15 +87,15 @@ def fonction(t, f,c):
 			in range(48,58) and f[i-2] != '*':
 				elt = f[i]+'*30'
 				ff.append(elt)
-			else: 
+			else:
 				ff.append(f[i])
-				
-				
+
+
 	f = ''
 	for elt in ff:
 		f += elt
-		
-	
+
+
 	if f != 'x':
 		if 'x' in f and 'x**2' not in f:
 			f = f.replace('x','(x/30)')
@@ -100,123 +108,160 @@ def fonction(t, f,c):
 			f = f.replace('x-','(x/30)-')
 		if 'x*' in f:
 			f = f.replace('x*','(x/30)*')
-	
-			
+
+
 	x = -300
 	y = eval(f)
 	t.penup()
 	t.setposition(x,y)
 	t.pendown()
-	
-	
+
+
 	for x in range (-300, 300):
 		y = eval(f)
 		t.setposition(x, y)
 		#print(f,x, y)
-	   
-def dessine(liste):
-	t = turtle.Turtle()
-	t.hideturtle()
-	t.speed(0)
-	turtle.setup(width=650,height=650)
-	repère(t)
-	nb_tour = len(liste)
-	for n in range(nb_tour):
-		e = liste[n]
-		f = e[0]
-		c = e[1]
-		fonction(t,f,c)
-	turtle.mainloop()
 
-def graf():
-	fenetre5 = tkinter.Tk()
-	y_1_v = tkinter.StringVar()
-	y_1_vo = tkinter.IntVar()
-	y_1_c1 = tkinter.IntVar()
-	y_1_c2 = tkinter.IntVar()
-	y_1_c3 = tkinter.IntVar()
-	y_1_c4 = tkinter.IntVar()
-	y_1_c5 = tkinter.IntVar()
-	y_1_c6 = tkinter.IntVar()
-	y_1_c7 = tkinter.IntVar()
-	y_1_c8 = tkinter.IntVar()
-	y_2_v = tkinter.StringVar()
-	y_2_vo = tkinter.IntVar()
-	y_2_c1 = tkinter.IntVar()
-	y_2_c2 = tkinter.IntVar()
-	y_2_c3 = tkinter.IntVar()
-	y_2_c4 = tkinter.IntVar()
-	y_2_c5 = tkinter.IntVar()
-	y_2_c6 = tkinter.IntVar()
-	y_2_c7 = tkinter.IntVar()
-	y_2_c8 = tkinter.IntVar()
-	y_3_v = tkinter.StringVar()
-	y_3_vo = tkinter.IntVar()
-	y_3_c1 = tkinter.IntVar()
-	y_3_c2 = tkinter.IntVar()
-	y_3_c3 = tkinter.IntVar()
-	y_3_c4 = tkinter.IntVar()
-	y_3_c5 = tkinter.IntVar()
-	y_3_c6 = tkinter.IntVar()
-	y_3_c7 = tkinter.IntVar()
-	y_3_c8 = tkinter.IntVar()
-	y_4_v = tkinter.StringVar()
-	y_4_vo = tkinter.IntVar()
-	y_4_c1 = tkinter.IntVar()
-	y_4_c2 = tkinter.IntVar()
-	y_4_c3 = tkinter.IntVar()
-	y_4_c4 = tkinter.IntVar()
-	y_4_c5 = tkinter.IntVar()
-	y_4_c6 = tkinter.IntVar()
-	y_4_c7 = tkinter.IntVar()
-	y_4_c8 = tkinter.IntVar()
-	y_5_v = tkinter.StringVar()
-	y_5_vo = tkinter.IntVar()
-	y_5_c1 = tkinter.IntVar()
-	y_5_c2 = tkinter.IntVar()
-	y_5_c3 = tkinter.IntVar()
-	y_5_c4 = tkinter.IntVar()
-	y_5_c5 = tkinter.IntVar()
-	y_5_c6 = tkinter.IntVar()
-	y_5_c7 = tkinter.IntVar()
-	y_5_c8 = tkinter.IntVar()
-	y_6_v = tkinter.StringVar()
-	y_6_vo = tkinter.IntVar()
-	y_6_c1 = tkinter.IntVar()
-	y_6_c2 = tkinter.IntVar()
-	y_6_c3 = tkinter.IntVar()
-	y_6_c4 = tkinter.IntVar()
-	y_6_c5 = tkinter.IntVar()
-	y_6_c6 = tkinter.IntVar()
-	y_6_c7 = tkinter.IntVar()
-	y_6_c8 = tkinter.IntVar()
-	y_7_v = tkinter.StringVar()
-	y_7_vo = tkinter.IntVar()
-	y_7_c1 = tkinter.IntVar()
-	y_7_c2 = tkinter.IntVar()
-	y_7_c3 = tkinter.IntVar()
-	y_7_c4 = tkinter.IntVar()
-	y_7_c5 = tkinter.IntVar()
-	y_7_c6 = tkinter.IntVar()
-	y_7_c7 = tkinter.IntVar()
-	y_7_c8 = tkinter.IntVar()
-	y_8_v = tkinter.StringVar()
-	y_8_vo = tkinter.IntVar()
-	y_8_c1 = tkinter.IntVar()
-	y_8_c2 = tkinter.IntVar()
-	y_8_c3 = tkinter.IntVar()
-	y_8_c4 = tkinter.IntVar()
-	y_8_c5 = tkinter.IntVar()
-	y_8_c6 = tkinter.IntVar()
-	y_8_c7 = tkinter.IntVar()
-	y_8_c8 = tkinter.IntVar()
+def dessine(liste):
+	"""
+	Fonction qui ce charge de dessiner les courbes.
+	"""
+	# Si la liste reçu n'est pas vide.
+	if liste != []:
+
+		# Création de la fenètre turtle.
+		t = turtle.Turtle()
+
+		# On cache la tortue.
+		t.hideturtle()
+
+		# On met la vitesse max.
+		t.speed(0)
+
+		# On configure la taille de la fenètre.
+		turtle.setup(width=650,height=650)
+
+		# Création du repère.
+		repère(t)
+
+		# On compte le nombre de tour à faire.
+		nb_tour = len(liste)
+
+		# Boucle qui permet d'afficher les courbes.
+		for n in range(nb_tour):
+			e = liste[n]
+			f = e[0]
+			c = e[1]
+			fonction(t,f,c)
+
+		# Mainloop pour que la fenètre reste.
+		turtle.mainloop()
+
+def graf(b):
+	"""
+	Fonction qui se charge d'afficher la fenètre et de traiter les
+	informations entrée pour retourner une liste.
+	"""
+	# Début : fenetre5.
+	# On crée la fenetre.
+	fenetre5 = Tk()
+
+	# On lui donne un titre.
 	fenetre5.title("f(x)")
-	titre = tkinter.Label(fenetre5, text="Graphique de fonction")
-	y_1 = tkinter.Label(fenetre5, text="y1 :")
-	y_1_1 = tkinter.Entry(fenetre5, textvariable=y_1_v)
-	y_1_2 = tkinter.Checkbutton(fenetre5, variable=y_1_vo)
-	y_1_3 = tkinter.Menubutton(fenetre5, text="Couleur", relief=tkinter.RAISED)
-	y_1_3.menu  = tkinter.Menu(y_1_3, tearoff = 0)
+
+	# On initialise les variables.
+	y_1_v = StringVar()
+	y_1_vo = IntVar()
+	if b != "":
+		y_1_v.set(b)
+		y_1_vo.set(1)
+	y_1_c1 = IntVar()
+	y_1_c2 = IntVar()
+	y_1_c3 = IntVar()
+	y_1_c4 = IntVar()
+	y_1_c5 = IntVar()
+	y_1_c6 = IntVar()
+	y_1_c7 = IntVar()
+	y_1_c8 = IntVar()
+	y_2_v = StringVar()
+	y_2_vo = IntVar()
+	y_2_c1 = IntVar()
+	y_2_c2 = IntVar()
+	y_2_c3 = IntVar()
+	y_2_c4 = IntVar()
+	y_2_c5 = IntVar()
+	y_2_c6 = IntVar()
+	y_2_c7 = IntVar()
+	y_2_c8 = IntVar()
+	y_3_v = StringVar()
+	y_3_vo = IntVar()
+	y_3_c1 = IntVar()
+	y_3_c2 = IntVar()
+	y_3_c3 = IntVar()
+	y_3_c4 = IntVar()
+	y_3_c5 = IntVar()
+	y_3_c6 = IntVar()
+	y_3_c7 = IntVar()
+	y_3_c8 = IntVar()
+	y_4_v = StringVar()
+	y_4_vo = IntVar()
+	y_4_c1 = IntVar()
+	y_4_c2 = IntVar()
+	y_4_c3 = IntVar()
+	y_4_c4 = IntVar()
+	y_4_c5 = IntVar()
+	y_4_c6 = IntVar()
+	y_4_c7 = IntVar()
+	y_4_c8 = IntVar()
+	y_5_v = StringVar()
+	y_5_vo = IntVar()
+	y_5_c1 = IntVar()
+	y_5_c2 = IntVar()
+	y_5_c3 = IntVar()
+	y_5_c4 = IntVar()
+	y_5_c5 = IntVar()
+	y_5_c6 = IntVar()
+	y_5_c7 = IntVar()
+	y_5_c8 = IntVar()
+	y_6_v = StringVar()
+	y_6_vo = IntVar()
+	y_6_c1 = IntVar()
+	y_6_c2 = IntVar()
+	y_6_c3 = IntVar()
+	y_6_c4 = IntVar()
+	y_6_c5 = IntVar()
+	y_6_c6 = IntVar()
+	y_6_c7 = IntVar()
+	y_6_c8 = IntVar()
+	y_7_v = StringVar()
+	y_7_vo = IntVar()
+	y_7_c1 = IntVar()
+	y_7_c2 = IntVar()
+	y_7_c3 = IntVar()
+	y_7_c4 = IntVar()
+	y_7_c5 = IntVar()
+	y_7_c6 = IntVar()
+	y_7_c7 = IntVar()
+	y_7_c8 = IntVar()
+	y_8_v = StringVar()
+	y_8_vo = IntVar()
+	y_8_c1 = IntVar()
+	y_8_c2 = IntVar()
+	y_8_c3 = IntVar()
+	y_8_c4 = IntVar()
+	y_8_c5 = IntVar()
+	y_8_c6 = IntVar()
+	y_8_c7 = IntVar()
+	y_8_c8 = IntVar()
+
+	# On crée les éléments...
+	titre = Label(fenetre5, text="Graphique de fonction")
+
+	y_1 = Label(fenetre5, text="y1 :")
+	y_1_1 = Entry(fenetre5, textvariable=y_1_v)
+	y_1_2 = Checkbutton(fenetre5, variable=y_1_vo)
+	y_1_3 = Menubutton(fenetre5, text="Couleur", relief=RAISED)
+	y_1_3.menu  = Menu(y_1_3, tearoff = 0)
 	y_1_3["menu"]  =  y_1_3.menu
 	y_1_3.menu.add_checkbutton (label="Bleu", variable=y_1_c1)
 	y_1_3.menu.add_checkbutton (label="Rouge", variable=y_1_c2)
@@ -226,11 +271,12 @@ def graf():
 	y_1_3.menu.add_checkbutton (label="Rose", variable=y_1_c6)
 	y_1_3.menu.add_checkbutton (label="Orange", variable=y_1_c7)
 	y_1_3.menu.add_checkbutton (label="Noir", variable=y_1_c8)
-	y_2 = tkinter.Label(fenetre5, text="y2 :")
-	y_2_1 = tkinter.Entry(fenetre5, textvariable=y_2_v)
-	y_2_2 = tkinter.Checkbutton(fenetre5, variable=y_2_vo)
-	y_2_3 = tkinter.Menubutton(fenetre5, text="Couleur", relief=tkinter.RAISED)
-	y_2_3.menu  = tkinter.Menu(y_2_3, tearoff = 0)
+
+	y_2 = Label(fenetre5, text="y2 :")
+	y_2_1 = Entry(fenetre5, textvariable=y_2_v)
+	y_2_2 = Checkbutton(fenetre5, variable=y_2_vo)
+	y_2_3 = Menubutton(fenetre5, text="Couleur", relief=RAISED)
+	y_2_3.menu  = Menu(y_2_3, tearoff = 0)
 	y_2_3["menu"]  =  y_2_3.menu
 	y_2_3.menu.add_checkbutton (label="Bleu", variable=y_2_c1)
 	y_2_3.menu.add_checkbutton (label="Rouge", variable=y_2_c2)
@@ -240,11 +286,12 @@ def graf():
 	y_2_3.menu.add_checkbutton (label="Rose", variable=y_2_c6)
 	y_2_3.menu.add_checkbutton (label="Orange", variable=y_2_c7)
 	y_2_3.menu.add_checkbutton (label="Noir", variable=y_2_c8)
-	y_3 = tkinter.Label(fenetre5, text="y3 :")
-	y_3_1 = tkinter.Entry(fenetre5, textvariable=y_3_v)
-	y_3_2 = tkinter.Checkbutton(fenetre5, variable=y_3_vo)
-	y_3_3 = tkinter.Menubutton(fenetre5, text="Couleur", relief=tkinter.RAISED)
-	y_3_3.menu  =  tkinter.Menu(y_3_3, tearoff = 0)
+
+	y_3 = Label(fenetre5, text="y3 :")
+	y_3_1 = Entry(fenetre5, textvariable=y_3_v)
+	y_3_2 = Checkbutton(fenetre5, variable=y_3_vo)
+	y_3_3 = Menubutton(fenetre5, text="Couleur", relief=RAISED)
+	y_3_3.menu  =  Menu(y_3_3, tearoff = 0)
 	y_3_3["menu"]  =  y_3_3.menu
 	y_3_3.menu.add_checkbutton (label="Bleu", variable=y_3_c1)
 	y_3_3.menu.add_checkbutton (label="Rouge", variable=y_3_c2)
@@ -254,11 +301,12 @@ def graf():
 	y_3_3.menu.add_checkbutton (label="Rose", variable=y_3_c6)
 	y_3_3.menu.add_checkbutton (label="Orange", variable=y_3_c7)
 	y_3_3.menu.add_checkbutton (label="Noir", variable=y_3_c8)
-	y_4 = tkinter.Label(fenetre5, text="y4 :")
-	y_4_1 = tkinter.Entry(fenetre5, textvariable=y_4_v)
-	y_4_2 = tkinter.Checkbutton(fenetre5, variable=y_4_vo)
-	y_4_3 = tkinter.Menubutton(fenetre5, text="Couleur", relief=tkinter.RAISED)
-	y_4_3.menu  =  tkinter.Menu(y_4_3, tearoff = 0)
+
+	y_4 = Label(fenetre5, text="y4 :")
+	y_4_1 = Entry(fenetre5, textvariable=y_4_v)
+	y_4_2 = Checkbutton(fenetre5, variable=y_4_vo)
+	y_4_3 = Menubutton(fenetre5, text="Couleur", relief=RAISED)
+	y_4_3.menu  =  Menu(y_4_3, tearoff = 0)
 	y_4_3["menu"]  =  y_4_3.menu
 	y_4_3.menu.add_checkbutton (label="Bleu", variable=y_4_c1)
 	y_4_3.menu.add_checkbutton (label="Rouge", variable=y_4_c2)
@@ -268,11 +316,12 @@ def graf():
 	y_4_3.menu.add_checkbutton (label="Rose", variable=y_4_c6)
 	y_4_3.menu.add_checkbutton (label="Orange", variable=y_4_c7)
 	y_4_3.menu.add_checkbutton (label="Noir", variable=y_4_c8)
-	y_5 = tkinter.Label(fenetre5, text="y5 :")
-	y_5_1 = tkinter.Entry(fenetre5, textvariable=y_5_v)
-	y_5_2 = tkinter.Checkbutton(fenetre5, variable=y_5_vo)
-	y_5_3 = tkinter.Menubutton(fenetre5, text="Couleur", relief=tkinter.RAISED)
-	y_5_3.menu  =  tkinter.Menu(y_5_3, tearoff = 0)
+
+	y_5 = Label(fenetre5, text="y5 :")
+	y_5_1 = Entry(fenetre5, textvariable=y_5_v)
+	y_5_2 = Checkbutton(fenetre5, variable=y_5_vo)
+	y_5_3 = Menubutton(fenetre5, text="Couleur", relief=RAISED)
+	y_5_3.menu  =  Menu(y_5_3, tearoff = 0)
 	y_5_3["menu"]  =  y_5_3.menu
 	y_5_3.menu.add_checkbutton (label="Bleu", variable=y_5_c1)
 	y_5_3.menu.add_checkbutton (label="Rouge", variable=y_5_c2)
@@ -282,11 +331,12 @@ def graf():
 	y_5_3.menu.add_checkbutton (label="Rose", variable=y_5_c6)
 	y_5_3.menu.add_checkbutton (label="Orange", variable=y_5_c7)
 	y_5_3.menu.add_checkbutton (label="Noir", variable=y_5_c8)
-	y_6 = tkinter.Label(fenetre5, text="y6 :")
-	y_6_1 = tkinter.Entry(fenetre5, textvariable=y_6_v)
-	y_6_2 = tkinter.Checkbutton(fenetre5, variable=y_6_vo)
-	y_6_3 = tkinter.Menubutton(fenetre5, text="Couleur", relief=tkinter.RAISED)
-	y_6_3.menu  =  tkinter.Menu(y_6_3, tearoff = 0)
+
+	y_6 = Label(fenetre5, text="y6 :")
+	y_6_1 = Entry(fenetre5, textvariable=y_6_v)
+	y_6_2 = Checkbutton(fenetre5, variable=y_6_vo)
+	y_6_3 = Menubutton(fenetre5, text="Couleur", relief=RAISED)
+	y_6_3.menu  =  Menu(y_6_3, tearoff = 0)
 	y_6_3["menu"]  =  y_6_3.menu
 	y_6_3.menu.add_checkbutton (label="Bleu", variable=y_6_c1)
 	y_6_3.menu.add_checkbutton (label="Rouge", variable=y_6_c2)
@@ -296,11 +346,12 @@ def graf():
 	y_6_3.menu.add_checkbutton (label="Rose", variable=y_6_c6)
 	y_6_3.menu.add_checkbutton (label="Orange", variable=y_6_c7)
 	y_6_3.menu.add_checkbutton (label="Noir", variable=y_6_c8)
-	y_7 = tkinter.Label(fenetre5, text="y7 :")
-	y_7_1 = tkinter.Entry(fenetre5, textvariable=y_7_v)
-	y_7_2 = tkinter.Checkbutton(fenetre5, variable=y_7_vo)	
-	y_7_3 = tkinter.Menubutton(fenetre5, text="Couleur", relief=tkinter.RAISED)
-	y_7_3.menu  =  tkinter.Menu(y_7_3, tearoff = 0)
+
+	y_7 = Label(fenetre5, text="y7 :")
+	y_7_1 = Entry(fenetre5, textvariable=y_7_v)
+	y_7_2 = Checkbutton(fenetre5, variable=y_7_vo)
+	y_7_3 = Menubutton(fenetre5, text="Couleur", relief=RAISED)
+	y_7_3.menu  =  Menu(y_7_3, tearoff = 0)
 	y_7_3["menu"]  =  y_7_3.menu
 	y_7_3.menu.add_checkbutton (label="Bleu", variable=y_7_c1)
 	y_7_3.menu.add_checkbutton (label="Rouge", variable=y_7_c2)
@@ -310,11 +361,12 @@ def graf():
 	y_7_3.menu.add_checkbutton (label="Rose", variable=y_7_c6)
 	y_7_3.menu.add_checkbutton (label="Orange", variable=y_7_c7)
 	y_7_3.menu.add_checkbutton (label="Noir", variable=y_7_c8)
-	y_8 = tkinter.Label(fenetre5, text="y8 :")	
-	y_8_1 = tkinter.Entry(fenetre5, textvariable=y_8_v)
-	y_8_2 = tkinter.Checkbutton(fenetre5, variable=y_8_vo)
-	y_8_3 = tkinter.Menubutton(fenetre5, text="Couleur", relief=tkinter.RAISED)
-	y_8_3.menu  =  tkinter.Menu(y_8_3, tearoff = 0)
+
+	y_8 = Label(fenetre5, text="y8 :")
+	y_8_1 = Entry(fenetre5, textvariable=y_8_v)
+	y_8_2 = Checkbutton(fenetre5, variable=y_8_vo)
+	y_8_3 = Menubutton(fenetre5, text="Couleur", relief=RAISED)
+	y_8_3.menu  =  Menu(y_8_3, tearoff = 0)
 	y_8_3["menu"]  =  y_8_3.menu
 	y_8_3.menu.add_checkbutton (label="Bleu", variable=y_8_c1)
 	y_8_3.menu.add_checkbutton (label="Rouge", variable=y_8_c2)
@@ -324,8 +376,11 @@ def graf():
 	y_8_3.menu.add_checkbutton (label="Rose", variable=y_8_c6)
 	y_8_3.menu.add_checkbutton (label="Orange", variable=y_8_c7)
 	y_8_3.menu.add_checkbutton (label="Noir", variable=y_8_c8)
-	bouton = tkinter.Button(fenetre5, text="Afficher", command=fenetre5.destroy)
-	
+
+	bouton = Button(fenetre5, text="Afficher", command=fenetre5.destroy)
+
+
+	# ...on leurs donnent les caractèristiques sur leurs polices...
 	titre.config(font=('Arial', 14))
 	y_1.config(font=('Arial', 14, 'bold'))
 	y_1_1.config(font=('Arial', 14, 'bold'))
@@ -344,7 +399,9 @@ def graf():
 	y_8.config(font=('Arial', 14, 'bold'))
 	y_8_1.config(font=('Arial', 14, 'bold'))
 	bouton.config(font=('Arial', 14, 'bold'))
-	
+
+
+	# ...et on les placent dans la fenètre.
 	titre.grid(row=1, column=1, columnspan=3)
 	y_1.grid(row=2, column=2)
 	y_1_1.grid(row=2, column=3)
@@ -379,9 +436,15 @@ def graf():
 	y_8_2.grid(row=9, column=4)
 	y_8_3.grid(row=9, column=1)
 	bouton.grid(row=10, column=2)
-	
+
+
+	# Mainloop pour que la fenètre reste ouverte.
 	fenetre5.mainloop()
-	
+
+	# Fin : fenetre5.
+
+	# Récuperation des valeurs pour les remettrent dans leurs variables
+	# associées.
 	y_1_v = y_1_v.get()
 	y_1_vo = y_1_vo.get()
 	y_2_v = y_2_v.get()
@@ -462,7 +525,8 @@ def graf():
 	y_8_c6 = y_8_c6.get()
 	y_8_c7 = y_8_c7.get()
 	y_8_c8 = y_8_c8.get()
-	
+
+	# Configuration des couleurs des courbes.
 	if y_1_c1 == 1:
 		y_1_c = "blue"
 	elif y_1_c2 == 1:
@@ -608,8 +672,10 @@ def graf():
 	else:
 		y_8_c = "black"
 
+	# Création d'une liste dans a.
 	a = []
-	
+
+	# Tests pour créer la liste final à envoyer à la fonction dessine.
 	if y_1_vo == 1:
 		c = []
 		c.append(y_1_v)
@@ -650,10 +716,15 @@ def graf():
 		c.append(y_8_v)
 		c.append(y_8_c)
 		a.append(c)
+
+	# Retourne a.
 	return a
-	
-	
-def maina():
-	a = graf()
+
+
+def mainfx(b):
+	"""
+	Fonction principal.
+	"""
+	a = graf(b)
 	#print(a)
 	dessine(a)
