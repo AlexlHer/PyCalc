@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Auteur : Alexandre l'Heritier
 print("----------------------------------------------------------------------")
-print("PyCalc v1.0")
+print("PyCalc v1.1")
 print("----------------------------------------------------------------------")
 print("")
 
@@ -9,9 +9,18 @@ from tkinter import *
 import math
 
 calcul = 0
-calcul1 = 0
 touche_1 = 0
 touche_2 = 0
+
+def erreur(a):
+	fenetreer = Tk()
+	fenetreer.title("Erreur")
+	titre = Label(fenetreer, text="Erreur", height=1)
+	erreur = Label(fenetreer, text=a, height=1)
+	titre.config(font=('Arial', 16, 'bold'))
+	erreur.config(font=('Arial', 13))
+	titre.pack()
+	erreur.pack()
 
 def touche_1():
 	global calcul
@@ -173,54 +182,67 @@ def touche_pui():
 	a += "**"
 	calcul.set(a)
 	
+def touche_graph():
+	global calcul
+	a = calcul.get()
+	e = "Option pas encore disponible !"
+	erreur(e)
+	
 def secdeg():
 	global calcul
-	f = calcul.get()
-	fm = f.replace('**2', "")
-	fm = fm.split("x")
-	a = int(fm[0])
-	b = int(fm[1])
-	c = int(fm[2])
-	delta = (b*b) - (4*a*c)
-	if delta < 0:
-		p = "Pas de solutions"
-	elif delta == 0:
-		resu = (-b)/(2*a)
-		p = "Une solution : x = {}/2{} = {}".format(-b, a, resu)
-	else:
-		resu1 = (-b-math.sqrt(delta))/(2*a)
-		resu2 = (-b+math.sqrt(delta))/(2*a)
-		resu1 = float("{0:2.2f}".format(resu1))
-		resu2 = float("{0:2.2f}".format(resu2))
-		p = "Deux solutions : x1 = ({}-√{})/2{} = {} et x2 = ({}+√{})/2{} = {}".format(-b, delta, a, resu1, -b, delta, a, resu2)
-
-	a = "a = {}".format(a)
-	b = "b = {}".format(b)
-	c = "c = {}".format(c)
-	delta = "Δ = {}".format(delta)
-	fenetre3 = Tk()
-	fenetre3.title("Second degré")
+	try:
+		f = calcul.get()
+		fm = f.replace('**2', "")
+		fm = fm.split("x")
+		a = int(fm[0])
+		b = int(fm[1])
+		c = int(fm[2])
+		delta = (b*b) - (4*a*c)
+		if delta < 0:
+			p = "Pas de solutions"
+		elif delta == 0:
+			resu = (-b)/(2*a)
+			p = "Une solution : x = {}/2{} = {}".format(-b, a, resu)
+		else:
+			resu1 = (-b-math.sqrt(delta))/(2*a)
+			resu2 = (-b+math.sqrt(delta))/(2*a)
+			resu1 = float("{0:2.2f}".format(resu1))
+			resu2 = float("{0:2.2f}".format(resu2))
+			p = "Deux solutions : x1 = ({}-√{})/2{} = {} et x2 = ({}+√{})/2{} = {}".format(-b, delta, a, resu1, -b, delta, a, resu2)
 	
-	titre = Label(fenetre3, text=f, height=1, relief=SUNKEN)
-	scd_1 = Label(fenetre3, text=a, height=1)
-	scd_2 = Label(fenetre3, text=b, height=1)
-	scd_3 = Label(fenetre3, text=c, height=1)
-	scd_4 = Label(fenetre3, text=delta, height=1)
-	scd_5 = Label(fenetre3, text=p, height=1)
-	
-	titre.config(font=('Arial', 16, 'bold'))
-	scd_1.config(font=('Arial', 14, 'bold'))
-	scd_2.config(font=('Arial', 14, 'bold'))
-	scd_3.config(font=('Arial', 14, 'bold'))
-	scd_4.config(font=('Arial', 14, 'bold'))
-	scd_5.config(font=('Arial', 14, 'bold'))
+		a = "a = {}".format(a)
+		b = "b = {}".format(b)
+		c = "c = {}".format(c)
+		delta = "Δ = {}".format(delta)
+		fenetre3 = Tk()
+		fenetre3.title("Second degré")
 		
-	titre.pack()
-	scd_1.pack()
-	scd_2.pack()
-	scd_3.pack()
-	scd_4.pack()
-	scd_5.pack()
+		titre = Label(fenetre3, text=f, height=1, relief=SUNKEN)
+		scd_1 = Label(fenetre3, text=a, height=1)
+		scd_2 = Label(fenetre3, text=b, height=1)
+		scd_3 = Label(fenetre3, text=c, height=1)
+		scd_4 = Label(fenetre3, text=delta, height=1)
+		scd_5 = Label(fenetre3, text=p, height=1)
+		
+		titre.config(font=('Arial', 16, 'bold'))
+		scd_1.config(font=('Arial', 14, 'bold'))
+		scd_2.config(font=('Arial', 14, 'bold'))
+		scd_3.config(font=('Arial', 14, 'bold'))
+		scd_4.config(font=('Arial', 14, 'bold'))
+		scd_5.config(font=('Arial', 14, 'bold'))
+		
+		titre.pack()
+		scd_1.pack()
+		scd_2.pack()
+		scd_3.pack()
+		scd_4.pack()
+		scd_5.pack()
+	except IndexError:
+		e = "La formule entrée n'est pas valide !"
+		erreur(e)
+	except ValueError:
+		e = "La formule entrée n'est pas valide !"
+		erreur(e)
 	
 def touche_oth():
 	global calcul
@@ -241,12 +263,12 @@ def touche_oth():
 	other_1.pack()
 	
 fenetre1 = Tk()
-fenetre1.title("PyCalc v1.0")
+fenetre1.title("PyCalc v1.1")
 
 calcul = StringVar()
 v = IntVar()
 
-entree = Entry(fenetre1, textvariable=calcul, width=16, borderwidth=10)
+entree = Entry(fenetre1, textvariable=calcul, width=17, borderwidth=10)
 touche_1 = Button(fenetre1, text = "1", width=3, relief=FLAT, command = touche_1)
 touche_2 = Button(fenetre1, text = "2", width=3, relief=FLAT, command = touche_2)
 touche_3 = Button(fenetre1, text = "3", width=3, relief=FLAT, command = touche_3)
@@ -266,9 +288,9 @@ touche_res = Button(fenetre1, text = "=", width=3, relief=SUNKEN, command = touc
 touche_vir = Button(fenetre1, text = ",", width=3, command = touche_vir)
 touche_pa1 = Button(fenetre1, text = "(", width=3, command = touche_pa1)
 touche_pa2 = Button(fenetre1, text = ")", width=3, command = touche_pa2)
-touche_graph = Button(fenetre1, text = "f(x)", width=3, command = touche_pa2)
+touche_graph = Button(fenetre1, text = "f(x)", width=3, command = touche_graph)
 touche_eff = Button(fenetre1, text = "←", width=3, command = touche_eff)
-touche_x = Button(fenetre1, text = "X", width=3, command = touche_x)
+touche_x = Button(fenetre1, text = "x", width=3, command = touche_x)
 touche_pi = Button(fenetre1, text = "π", width=3, command = touche_pi)
 touche_sin = Button(fenetre1, text = "sin", width=3, command = touche_sin)
 touche_cos = Button(fenetre1, text = "cos", width=3, command = touche_cos)
@@ -343,8 +365,11 @@ fenetre1.mainloop()
 
 """
 Changelog :
+v1.1 :
+Mise en place d'une fonction d'erreur.
+
 v1.0 :
-Version final.
+Version final de PyCalc.
 Ajout d'un calcul auto d'équation du second degré.
 
 v0.4 :
