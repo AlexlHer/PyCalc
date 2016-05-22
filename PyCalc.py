@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # Auteur : Alexandre l'Heritier
 print("----------------------------------------------------------------------")
-print("PyCalc v1.2")
+print("PyCalc v2.0")
 print("----------------------------------------------------------------------")
 print("")
 
@@ -193,7 +193,6 @@ def touche_graph():
 	erreur(e)
 	
 def secdeg():
-	global calcul
 	try:
 		f = calcul.get()
 		fm = f.replace('**2', "")
@@ -206,13 +205,13 @@ def secdeg():
 			p = "Pas de solutions"
 		elif delta == 0:
 			resu = (-b)/(2*a)
-			p = "Une solution : x = {}/2{} = {}".format(-b, a, resu)
+			p = "x = {}/2{} = {}".format(-b, a, resu)
 		else:
 			resu1 = (-b-math.sqrt(delta))/(2*a)
 			resu2 = (-b+math.sqrt(delta))/(2*a)
 			resu1 = float("{0:2.2f}".format(resu1))
 			resu2 = float("{0:2.2f}".format(resu2))
-			p = "Deux solutions : x1 = ({}-√{})/2{} = {} et x2 = ({}+√{})/2{} = {}".format(-b, delta, a, resu1, -b, delta, a, resu2)
+			p = "x1 = ({}-√{})/2{} = {} et x2 = ({}+√{})/2{} = {}".format(-b, delta, a, resu1, -b, delta, a, resu2)
 	
 		a = "a = {}".format(a)
 		b = "b = {}".format(b)
@@ -226,14 +225,16 @@ def secdeg():
 		scd_2 = Label(fenetre3, text=b, height=1)
 		scd_3 = Label(fenetre3, text=c, height=1)
 		scd_4 = Label(fenetre3, text=delta, height=1)
-		scd_5 = Label(fenetre3, text=p, height=1)
+		scd_5 = Label(fenetre3, text="Solution(s)", height=1)
+		scd_6 = Label(fenetre3, text=p, height=1, relief=SUNKEN)
 		
 		titre.config(font=('Arial', 16, 'bold'))
 		scd_1.config(font=('Arial', 14, 'bold'))
 		scd_2.config(font=('Arial', 14, 'bold'))
 		scd_3.config(font=('Arial', 14, 'bold'))
 		scd_4.config(font=('Arial', 14, 'bold'))
-		scd_5.config(font=('Arial', 14, 'bold'))
+		scd_5.config(font=('Arial', 14))
+		scd_6.config(font=('Arial', 16, 'bold'))
 		
 		titre.pack()
 		scd_1.pack()
@@ -241,33 +242,103 @@ def secdeg():
 		scd_3.pack()
 		scd_4.pack()
 		scd_5.pack()
+		scd_6.pack()
 	except IndexError:
 		e = "La formule entrée n'est pas valide !"
 		erreur(e)
 	except ValueError:
 		e = "La formule entrée n'est pas valide !"
 		erreur(e)
+	except ZeroDivisionError:
+		e = "La formule entrée n'est pas valide !"
+		erreur(e)
+		
+def canonic():
+	try:
+		f = calcul.get()
+		fm = f.replace('**2', "")
+		fm = fm.split("x")
+		a = int(fm[0])
+		b = int(fm[1])
+		c = int(fm[2])
+		alpha = (-b)/(2*a)
+		beta = a*alpha*alpha+b*alpha+c
+		alpha1 = "α = {}".format(alpha)
+		beta1 = "β = {}".format(beta)
+		if alpha < 0:
+			alpha = "+{}".format(-alpha)
+		elif alpha >= 0:
+			alpha = "-{}".format(alpha)
+		if beta >= 0:
+			beta = "+{}".format(beta)
+		p = "{}*(x{})²{}".format(a, alpha, beta)
+		a = "a = {}".format(a)
+		b = "b = {}".format(b)
+		c = "c = {}".format(c)
+		fenetre4 = Tk()
+		fenetre4.title("Forme canonique")
+		
+		titre = Label(fenetre4, text="Forme normale", height=1)
+		titre_1 = Label(fenetre4, text=f, height=1, relief=SUNKEN)
+		scd_1 = Label(fenetre4, text=a, height=1)
+		scd_2 = Label(fenetre4, text=b, height=1)
+		scd_3 = Label(fenetre4, text=c, height=1)
+		scd_4 = Label(fenetre4, text=alpha1, height=1)
+		scd_5 = Label(fenetre4, text=beta1, height=1)
+		scd_6 = Label(fenetre4, text="Forme canonique", height=1)
+		scd_7 = Label(fenetre4, text=p, height=1, relief=SUNKEN)
+		
+		titre.config(font=('Arial', 14))
+		titre_1.config(font=('Arial', 16, 'bold'))
+		scd_1.config(font=('Arial', 14, 'bold'))
+		scd_2.config(font=('Arial', 14, 'bold'))
+		scd_3.config(font=('Arial', 14, 'bold'))
+		scd_4.config(font=('Arial', 14, 'bold'))
+		scd_5.config(font=('Arial', 14, 'bold'))
+		scd_6.config(font=('Arial', 14))
+		scd_7.config(font=('Arial', 16, 'bold'))
+		
+		titre.pack()
+		titre_1.pack()
+		scd_1.pack()
+		scd_2.pack()
+		scd_3.pack()
+		scd_4.pack()
+		scd_5.pack()
+		scd_6.pack()
+		scd_7.pack()
+	except IndexError:
+		e = "La formule entrée n'est pas valide !"
+		erreur(e)
+	except ValueError:
+		e = "La formule entrée n'est pas valide !"
+		erreur(e)
+	except ZeroDivisionError:
+		e = "La formule entrée n'est pas valide !"
+		erreur(e)
 	
 def touche_oth():
-	global calcul
 	a = calcul.get()		
 	fenetre2 = Tk()
 	fenetre2.title("Autres options")
 	
 	titre = Label(fenetre2, text="A résoudre", height=1)
 	titre1 = Label(fenetre2, text=a, height=1, relief=SUNKEN)
-	other_1 = Button(fenetre2, text = "Calcul de l'équation du second degré (ax²+bx+c)", command = secdeg)
+	other_1 = Button(fenetre2, text = "Calcul de l'équation du second degré (ax**2+bx+c)", command = secdeg)
+	other_2 = Button(fenetre2, text = "Calcul de la forme canonique (ax**2+bx+c)", command = canonic)
 	
 	titre.config(font=('Arial', 14))
 	titre1.config(font=('Arial', 16, 'bold'))
 	other_1.config(font=('Arial', 12, 'bold'))
+	other_2.config(font=('Arial', 12, 'bold'))
 	
 	titre.pack()
 	titre1.pack()
 	other_1.pack()
+	other_2.pack()
 	
 fenetre1 = Tk()
-fenetre1.title("PyCalc v1.2")
+fenetre1.title("PyCalc v2.0")
 
 calcul = StringVar()
 v = IntVar()
@@ -369,6 +440,9 @@ fenetre1.mainloop()
 
 """
 Changelog :
+v2.0 :
+Ajout du calcul de la forme canonique.
+
 v1.2 :
 Ajout de messages d'erreurs.
 
