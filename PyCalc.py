@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 # Auteurs : Ricardo Ramos et Alexandre l'Heritier
 print("----------------------------------------------------------------------")
-print("PyCalc v3.2")
+print("PyCalc v4.0")
 print("----------------------------------------------------------------------")
 print("")
 
 from tkinter import *
-from Add_PyCalc_32 import *
+from Add_PyCalc_31_fx import *
+from Add_PyCalc_10_suite import *
 import math
 
 calcul = 0
-touche_1 = 0
-touche_2 = 0
-y_1_v = 0
+fenetre2 = 0
 
 def erreur(a):
 	fenetreer = Tk()
@@ -189,8 +188,16 @@ def touche_pui():
 	calcul.set(a)
 		
 def touche_graph():
+	global calcul
+	a = calcul.get()
 	fenetre1.destroy()
-	maina()
+	mainfx(a)
+
+def suite():
+	global fenetre2
+	fenetre2.destroy()
+	fenetre1.destroy()
+	mainsuite()
 	
 def secdeg():
 	try:
@@ -318,6 +325,7 @@ def canonic():
 		erreur(e)
 	
 def touche_oth():
+	global fenetre2
 	a = calcul.get()		
 	fenetre2 = Tk()
 	fenetre2.title("Autres options")
@@ -326,19 +334,22 @@ def touche_oth():
 	titre1 = Label(fenetre2, text=a, height=1, relief=SUNKEN)
 	other_1 = Button(fenetre2, text = "Calcul de l'équation du second degré (ax**2+bx+c)", command = secdeg)
 	other_2 = Button(fenetre2, text = "Calcul de la forme canonique (ax**2+bx+c)", command = canonic)
+	other_3 = Button(fenetre2, text = "Suite", command = suite)
 	
 	titre.config(font=('Arial', 14))
 	titre1.config(font=('Arial', 16, 'bold'))
 	other_1.config(font=('Arial', 12, 'bold'))
 	other_2.config(font=('Arial', 12, 'bold'))
+	other_3.config(font=('Arial', 12, 'bold'))
 	
 	titre.pack()
 	titre1.pack()
 	other_1.pack()
 	other_2.pack()
+	other_3.pack()
 	
 fenetre1 = Tk()
-fenetre1.title("PyCalc v3.2")
+fenetre1.title("PyCalc v4.0")
 
 calcul = StringVar()
 v = IntVar()
@@ -440,13 +451,23 @@ fenetre1.mainloop()
 
 """
 Changelog :
+v4.0 :
+(Module f(x) v3.1) :
+Plusieurs améliorations du module f(x) comme la possibilité de mettre une 
+formule directement depuis l'écran de la calculette.
+(Module suite v1.0) :
+Ajout du module suite (par Ricardo)
+
 v3.2 :
+(Module f(x) v3.0) :
 Mise à jour module f(x).
 
 v3.1 :
+(Module f(x) v2.0) :
 Mise à jour module f(x).
 
 v3.0 :
+(Module f(x) v1.0) :
 Integration des courbes de fonctions (par Ricardo).
 
 v2.0 :
